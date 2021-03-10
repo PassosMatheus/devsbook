@@ -49,9 +49,18 @@ class LoginHandler {
 
     public static function addUser($name, $email, $password, $birthdate) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
+        $token = md5(time().rand(0,999).time());
 
         User::insert([
-            'email'
+            'email' => $email,
+            'password' => $hash,
+            'name' => $name,
+            'birthdate' => $birthdate,
+            'avatar' => 'default.jpg',
+            'cover' => 'cover.jpg',
+            'token' => $token
         ])->execute();
+
+        return $token;
     }
 }
