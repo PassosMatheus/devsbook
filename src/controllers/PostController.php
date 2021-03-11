@@ -3,6 +3,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\handlers\LoginHandler;
+use \src\handlers\PostHandler;
 
 class PostController extends Controller {
     
@@ -18,7 +19,15 @@ class PostController extends Controller {
     public function new() {
        $body = filter_input(INPUT_POST, 'body');
 
-       echo 'CORPO: '.$body.' - ID: '.$this->loggedUser->id;
+        if($body) {
+            PostHandler::addPost(
+                $this->loggedUser->id,
+                'text',
+                $body
+            );
+        }
+
+        $this->redirect('/');
     }
 
 }
