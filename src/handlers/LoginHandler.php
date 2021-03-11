@@ -42,7 +42,7 @@ class LoginHandler {
         return false;
     }
 
-    public function emailExists($email) {
+    public static function emailExists($email) {
         $user = User::select()->where('email', $email)->one();
         return $user ? true : false;
     }
@@ -56,8 +56,6 @@ class LoginHandler {
             'password' => $hash,
             'name' => $name,
             'birthdate' => $birthdate,
-            'avatar' => 'default.jpg',
-            'cover' => 'cover.jpg',
             'token' => $token
         ])->execute();
 
