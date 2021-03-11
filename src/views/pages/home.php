@@ -2,7 +2,9 @@
 
 <section class="container main">
     <?=$render('sidebar');?>    
-<section class="feed mt-10">
+
+
+    <section class="feed mt-10">
 
         <div class="row">
             <div class="column pr-5">

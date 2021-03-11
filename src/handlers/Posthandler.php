@@ -33,7 +33,6 @@ class PostHandler {
             ->orderBy('created_at', 'desc')
         ->get();
 
-
         //Transformar o resultado em objtos dos models
         $posts = [];
         foreach($postList as $postItem) {
@@ -43,7 +42,7 @@ class PostHandler {
             $newPost->created_at = $postItem['created_at'];
             $newPost->body = $postItem['body'];
             
-            //Preencher as informacoes adicionais no post
+        //Preencher as informacoes adicionais no post
             $newUser = User::select()->where('id', $postItem['id_user'])->one();
             
             $newPost->user = new User();
@@ -51,22 +50,13 @@ class PostHandler {
             $newPost->user->name = $newUser['name'];
             $newPost->user->avatar = $newUser['avatar'];
 
-            //Preencher informacoes de Like
-
-            //Preencher informacoes de Comments
+        //Preencher informacoes de Like
+        //Preencher informacoes de Comments
 
             $posts[] = $newPost;
-
-
-            //retornar o resultado
-            return $posts;
-
         }
-
-
-
-
-
+        //retornar o resultado
+            return $posts;
     }
 
 }
