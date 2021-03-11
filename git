@@ -1,0 +1,77 @@
+[33mcommit b08d5a89e9f2de4b331032905d378c3690d668a4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Thu Mar 11 14:37:18 2021 -0300
+
+    Adicionado arquivo de controle de posts
+
+[33mcommit 29b74be9ec66dc656ac4ca4800bb5b72cb31c958[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Thu Mar 11 14:35:06 2021 -0300
+
+    Iniciado o procedimento para realizacao dos posts
+
+[33mcommit 605626d70bb7e9bc35069c2339bf316ee5791b15[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Thu Mar 11 14:33:17 2021 -0300
+
+    Modificado o Home do site
+
+[33mcommit bb2a5a819127db96c3de619720bec267a12f74c2[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Wed Mar 10 11:30:32 2021 -0300
+
+    first commit
+
+[33mcommit 4bdf437ccfcfc2f256998663add8bdc2f1e17090[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Wed Mar 10 11:20:09 2021 -0300
+
+    configurado pagina de login
+
+[33mcommit 56466b72494aec9036e44e5a425e3eaf268e9a51[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Tue Mar 9 15:16:21 2021 -0300
+
+    Alterado localidade de alguns arquivos de modelo. Adicionado rotas no 'routes.php'.
+
+[33mcommit a6b84c837dca74220dcf931cbe6beaf5c65d2838[m
+Author: Matheus Passos <matheus@delgrande.com.br>
+Date:   Mon Mar 8 16:23:57 2021 -0300
+
+    firts commit
+
+[33mcommit 5fae8c00a55ba180dae946f9fedc2afa29c584f4[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Tue Mar 31 14:00:55 2020 -0300
+
+    bugfix no core/Model
+
+[33mcommit 6d46f35faabdcdac6bdf4054cf4ecd07e1541915[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Mon Mar 23 15:01:37 2020 -0300
+
+    core/controller redirect
+
+[33mcommit 4a989dfcf973314839de650ebd6cdff16c5525cf[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Mon Mar 23 13:51:48 2020 -0300
+
+    base funcionality
+
+[33mcommit bbebf8c015b1c6a7153f015e1b51739ba13ae59d[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Mon Mar 23 11:26:24 2020 -0300
+
+    small fix
+
+[33mcommit e26941cc34e26f382c2493b25fc2c2bf678d9a32[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Mon Mar 23 11:04:07 2020 -0300
+
+    add readme
+
+[33mcommit 40265d951a1454e8a3cab4fcef1e1bb74e59dc87[m
+Author: Bonieky Lacerda <suporte@b7web.com.br>
+Date:   Mon Mar 23 10:51:51 2020 -0300
+
+    first commit
