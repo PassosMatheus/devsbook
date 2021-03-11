@@ -41,6 +41,10 @@ class PostHandler {
             $newPost->type = $postItem['type'];
             $newPost->created_at = $postItem['created_at'];
             $newPost->body = $postItem['body'];
+
+            if($postItem['id_user'] == $idUser) {
+                $newPost->mine = true;
+            }
             
         //Preencher as informacoes adicionais no post
             $newUser = User::select()->where('id', $postItem['id_user'])->one();
@@ -51,7 +55,11 @@ class PostHandler {
             $newPost->user->avatar = $newUser['avatar'];
 
         //Preencher informacoes de Like
+            $newPost->likeCount = 0;
+            $newPost->liked = false;
+
         //Preencher informacoes de Comments
+            $newPost->comments = [];
 
             $posts[] = $newPost;
         }
