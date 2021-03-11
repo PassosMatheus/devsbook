@@ -26,6 +26,47 @@ class PostHandler {
             $users [] = $userItem['user_to'];
         }
         $users[] = $idUser;
+
+        //pegar o post das pessoas que sigo de forma ordenada
+        $postList = Post::select()
+            ->where('id_user', 'in', $users)
+            ->orderBy('created_at', 'desc')
+        ->get();
+
+
+        //Transformar o resultado em objtos dos models
+        $posts = [];
+        foreach($postList as $postItem) {
+            $newPost = new Post();
+            $newPost->id = $postItem['id'];
+            $newPost->type = $postItem['type'];
+            $newPost->created_at = $postItem['created_at'];
+            $newPost->body = $postItem['body'];
+            
+            //Preencher as informacoes adicionais no post
+            $newUser = User::select()->where('id', $postItem['id_user'])->one();
+            
+            $newPost->user = new User();
+            $newPost->user->id = $newUser['id'];
+            $newPost->user->name = $newUser['name'];
+            $newPost->user->avatar = $newUser['avatar'];
+
+            //Preencher informacoes de Like
+
+            //Preencher informacoes de Comments
+
+            $posts[] = $newPost;
+
+
+            //retornar o resultado
+            return $posts;
+
+        }
+
+
+
+
+
     }
 
 }
