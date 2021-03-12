@@ -79,6 +79,28 @@ class PostHandler {
             ];
     }
 
+    public static function getPhotosFrom($idUser) {
+        $photosData = Post::select()
+            ->where('id_user', $idUser)
+            ->where('type', 'photo')
+        ->get();
+
+        $photos = [];
+
+        foreach($photosData as $photo) {
+            $newPost = new Post();
+            $newPost->id = $photo['id'];
+            $newPost->type = $photo['type'];
+            $newPost->created_at = $photo['created_at'];
+            $newPost->body = $photo['body'];
+
+            $photos [] = $newPost;
+        }
+
+        return $photos;
+
+    }
+
 }
 
  

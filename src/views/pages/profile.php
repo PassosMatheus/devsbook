@@ -45,7 +45,7 @@
                             
                             <div class="user-info-mini">
                                 <img src="<?=$base;?>/assets/images/calendar.png" />
-                                01/01/1930 (90 anos)
+                                <?=date('d/m/Y', strtotime($user->birthdate));?> (<?=$user->ageYears;?> anos)
                             </div>
 
                             <?php  if(!empty($user->city)): ?>
@@ -111,42 +111,19 @@
                         </div>
                         <div class="box-body row m-20">
                             
-                            <div class="user-photo-item">
-                                <a href="#modal-1" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
-                                </a>
-                                <div id="modal-1" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
-                                </div>
-                            </div>
+                            <?php for($q=0;$q<4;$q++):?>
+                                <?php if(isset($user->photos[$q])): ?>
+                                    <div class="user-photo-item">
+                                        <a href="#modal-<?=$user->photos[$q]->id;?>" rel="modal:open">
+                                            <img src="<?=$base;?>/media/uploads/<?=$user->photos[$q]->body;?>" />
+                                        </a>
+                                        <div id="modal-<?=$user->photos[$q]->id;?>" style="display:none">
+                                            <img src="<?=$base;?>/media/uploads/<?=$user->photos[$q]->body;?>" />
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endfor; ?>
 
-                            <div class="user-photo-item">
-                                <a href="#modal-2" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
-                                </a>
-                                <div id="modal-2" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
-                                </div>
-                            </div>
-
-                            <div class="user-photo-item">
-                                <a href="#modal-3" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
-                                </a>
-                                <div id="modal-3" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
-                                </div>
-                            </div>
-
-                            <div class="user-photo-item">
-                                <a href="#modal-4" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
-                                </a>
-                                <div id="modal-4" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
 
