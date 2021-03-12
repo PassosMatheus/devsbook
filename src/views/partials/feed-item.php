@@ -46,7 +46,7 @@
 
             <div class="fic-answer row m-height-10 m-width-20">
                 <div class="fic-item-photo">
-                    <a href="<?=$base;?>/"><img src="<?=$base;?>/media/avatars/<?=$loggedUser->avatar;?>" /></a>
+                    <a href=""><img src="<?=$base;?>/media/avatars/<?=$loggedUser->avatar;?>" /></a>
                 </div>
                 <input type="text" class="fic-item-field" placeholder="Escreva um comentário" />
             </div>
