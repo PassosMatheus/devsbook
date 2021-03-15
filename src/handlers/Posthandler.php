@@ -18,6 +18,66 @@ class PostHandler {
         }
     }
 
+    public static function _postListToObject($postList, $loggedUserId) {
+        $posts = [];
+        foreach($postList as $postItem) {
+            $newPost = new Post();
+            $newPost->id = $postItem['id'];
+            $newPost->type = $postItem['type'];
+            $newPost->created_at = $postItem['created_at'];
+            $newPost->body = $postItem['body'];
+
+            if($postItem['id_user'] == $loggedUserId) {
+                $newPost->mine = true;
+            }
+            
+        //Preencher as informacoes adicionais no post
+            $newUser = User::select()->where('id', $postItem['id_user'])->one();
+            
+            $newPost->user = new User();
+            $newPost->user->id = $newUser['id'];
+            $newPost->user->name = $newUser['name'];
+            $newPost->user->avatar = $newUser['avatar'];
+
+        //Preencher informacoes de Like
+            $newPost->likeCount = 0;
+            $newPost->liked = false;
+
+        //Preencher informacoes de Comments
+            $newPost->comments = [];
+
+            $posts[] = $newPost;
+        }
+
+        return $posts;
+    }
+
+    public static function getUserFeed($idUser, $page, $loggedUserId) {
+        $perPage = 2;
+
+        $postList = Post::select()
+            ->where('id_user', $idUser)
+            ->orderBy('created_at', 'desc')
+            ->page($page, 2)
+        ->get();
+
+        $total = Post::select()
+            ->where('id_user', $idUser)
+        ->count();
+        $pageCount = ceil($total / $perPage);
+
+        //Transformar o resultado em objtos dos models
+        $posts = self::_postListToObject($postList, $loggedUserId);
+
+        //retornar o resultado
+            return [
+                'posts' => $posts,
+                'pageCount' => $pageCount,
+                'currentPage' => $page
+            ];
+    }
+
+
     public static function getHomeFeed($idUser, $page) {
     $perPage = 2;
 
@@ -42,35 +102,8 @@ class PostHandler {
         $pageCount = ceil($total / $perPage);
 
         //Transformar o resultado em objtos dos models
-        $posts = [];
-        foreach($postList as $postItem) {
-            $newPost = new Post();
-            $newPost->id = $postItem['id'];
-            $newPost->type = $postItem['type'];
-            $newPost->created_at = $postItem['created_at'];
-            $newPost->body = $postItem['body'];
+        $posts = self::_postListToObject($postList, $idUser);
 
-            if($postItem['id_user'] == $idUser) {
-                $newPost->mine = true;
-            }
-            
-        //Preencher as informacoes adicionais no post
-            $newUser = User::select()->where('id', $postItem['id_user'])->one();
-            
-            $newPost->user = new User();
-            $newPost->user->id = $newUser['id'];
-            $newPost->user->name = $newUser['name'];
-            $newPost->user->avatar = $newUser['avatar'];
-
-        //Preencher informacoes de Like
-            $newPost->likeCount = 0;
-            $newPost->liked = false;
-
-        //Preencher informacoes de Comments
-            $newPost->comments = [];
-
-            $posts[] = $newPost;
-        }
         //retornar o resultado
             return [
                 'posts' => $posts,
