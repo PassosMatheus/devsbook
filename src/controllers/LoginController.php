@@ -8,6 +8,7 @@ class LoginController extends Controller {
     
     public function signin() {
         $flash = '';
+
         if(!empty($_SESSION['flash'])) {
             $flash = $_SESSION['flash'];
             $_SESSION['flash'] = '';
@@ -25,6 +26,7 @@ class LoginController extends Controller {
             $token = UserHandler::verifyLogin($email, $password);
             if($token) {
                 $_SESSION['token'] = $token;
+                $this->redirect('/');
             } else {
                 $_SESSION['flash'] = 'E-mail e/ou senha não conferem';       }
                 $this->redirect('/login');
@@ -78,4 +80,10 @@ class LoginController extends Controller {
             $this->redirect('/cadastro');
         }
     }
+    
+    public function logout() {
+        $_SESSION['token'] = '';
+        $this->redirect('/login');
+    }
+
 }
