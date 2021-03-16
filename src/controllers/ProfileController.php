@@ -26,7 +26,7 @@ class ProfileController extends Controller {
             $id = $atts['id'];
         }
 
-        //Pegando iformaçoes do usuário
+        //Pegando informaçoes do usuário
         $user = UserHandler::getUser($id, true);
         if(!$user){
             $this->redirect('/');
