@@ -26,9 +26,11 @@ $router->get('/pesquisa', "SearchController@index");
 
 $router->get('/sair', 'LoginController@logout');
 
+$router->get('/ajax/like/{id}', 'AjaxController@like');
+
 
 /**
- * $router->get('pesquisa');
+ * 
  * $router->get('fotos');
  * $router->get('config');
  * 
