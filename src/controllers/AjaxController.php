@@ -48,4 +48,67 @@ class AjaxController extends Controller {
         exit;
     }
 
+    public function upload() {
+        $array = ['error' => ''];
+
+        if(isset($_FILES['photo']) && !empty($_FILES['photos']['tmp_name'])) {
+            $photo = $_FILES['photo'];
+
+            $maxWidth = 800;
+            $maxHeigh = 800;
+
+            if(in_array($photo['type'], ['image/png', 'image/jpg', 'image/jpeg'])) {
+                
+                list($widthOrig, $heigthOrig) = getimagesize($photo['tmp_name']);
+                $ratio = $widthOrig / $heigthOrig;
+
+                $newWidth = $maxWidth;
+                $newHeigth = $maxHeigh;
+                $ratioMax = $maxWidth / $maxHeigh;
+
+                if($ratioMax > $ratio) {
+                    $newWidth = $newWidth * $ratio;
+                } else {
+                    $newHeigth = $newWidth / $ratio; 
+                }
+
+                $finalImage = imagecreatetruecolor($newWidth, $newHeigth);
+                switch($photo['type']) {
+                    case 'image/png':
+                        $image = imagecreatefrompng($photo['tmp_name']);
+                    break;
+                    case 'image/jpg':
+                    case 'image/jpeg':
+                        $image = imagecreatefromjpeg($photo['tmp_name']);
+                    break;
+                }
+
+                imagecopyresampled(
+                    $finalImage, $image,
+                    0, 0, 0, 0,
+                    $newWidth, $newHeigth, $widthOrig, $heigthOrig
+                );
+
+                $photoName = md5(time().rand(0,9999)).'.jpg';
+                imagejpeg($finalImage, 'media/uploads/'.$photoName);
+
+                PostHandler::addPost(
+                    $this->loggedUser->id,
+                    'photo',
+                    $photoName
+                );
+            }
+
+
+
+        } else {
+            $array['error'] = 'Nenhum imagem enviada';
+        }
+
+
+        header("Content-Type: application/json");
+        echo json_encode($array);
+        exit;
+    }
+
 }

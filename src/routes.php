@@ -28,11 +28,4 @@ $router->get('/sair', 'LoginController@logout');
 
 $router->get('/ajax/like/{id}', 'AjaxController@like');
 $router->post('/ajax/comment', 'AjaxController@comment');
-
-
-/**
- * 
- * $router->get('fotos');
- * $router->get('config');
- * 
- */
+$router->post('/ajax/upload', 'AjaxController@upload');
