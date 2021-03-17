@@ -14,6 +14,7 @@ class AjaxController extends Controller {
         if($this->loggedUser === false) {
             header("Content-Type: application/json");
             echo json_encode(['error' => 'Usuário não logado']);
+            exit;
         }
     }
 
@@ -25,6 +26,26 @@ class AjaxController extends Controller {
         } else {
             PostHandler::addLike($id, $this->loggedUser->id);
         }
+    }
+
+    public function comment() {
+        $array = ['error' => ''];
+
+        $id = filter_input(INPUT_POST, 'id');
+        $txt = filter_input(INPUT_POST, 'txt');
+
+        if ($id && $txt) {
+            PostHandler::addComment($id, $txt, $this->loggedUser->id);
+
+            $array['link'] = '/perfil/'.$this->loggedUser->id;
+            $array['avatar'] = '/media/avatars/'.$this->loggedUser->avatar;
+            $array['name'] = $this->loggedUser->name;
+            $array['body'] = $txt;
+        }
+
+        header("Content-Type: application/json");
+        echo json_encode($array);
+        exit;
     }
 
 }
